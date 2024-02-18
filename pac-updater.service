@@ -7,7 +7,7 @@ Type=oneshot
 ExecStart=/usr/bin/pacman-system-updater
 RemainAfterExit=false
 #StandardOutput=journal
-StandardOutput=/var/log/pac-updater.log
+StandardOutput=append:/var/log/pac-updater.log
 
 [Install]
 WantedBy=multi-user.target

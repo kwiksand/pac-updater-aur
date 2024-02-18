@@ -72,9 +72,10 @@ function notify_users() {
 
     if [[ ! -d /tmp/.X11-unix/ ]] || [[ $(who | grep -c tty ) -eq 0 ]]; then
         # No users to notify, exit early
-	return 0
+	      return 0
     fi
 
+    set +e
     #Detect the name of the display in use
     #display=":$(ls /tmp/.X11-unix/* | sed 's#/tmp/.X11-unix/X##' | head -n 1)"
     display=":$(find  /tmp/.X11-unix/ -iname 'X[0-9]*' -printf '%f\n' | head -n 1)"
@@ -88,6 +89,7 @@ function notify_users() {
 
     #Detect the id of the user
     uid="$(id -u "$user")"
+    set -e
 
     #sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "$@"
     #DBUS_SESSION_BUS_ADDRESS="$bus_addr" sudo -u $user -E 

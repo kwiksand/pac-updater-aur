@@ -1,7 +1,7 @@
 # PKGBUILD for example-service
 
 pkgname=pac-updater
-pkgver=1.0.0
+pkgver=1.0.2
 pkgrel=1
 pkgdesc="Pacman Update Scheduling and Notification"
 arch=('any')
@@ -32,15 +32,16 @@ package() {
 # Post-installation steps
 post_install() {
   echo "Enabling and starting pac-updater.service..."
-  systemctl enable pac-updater.service
-  systemctl start pac-updater.service
+  systemctl daemon-reload
+  systemctl enable --now pac-updater.service
+  systemctl enable --now pac-updater.timer
 }
 
 # Pre-removal steps
 pre_remove() {
   echo "Stopping and disabling pac-updater.service..."
-  systemctl stop pac-updater.service
-  systemctl disable pac-updater.service
+  systemctl disable --now pac-updater.service
+  systemctl disable --now pac-updater.timer
 }
 
 # Post-upgrade steps
