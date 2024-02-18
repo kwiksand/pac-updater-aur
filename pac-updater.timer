@@ -1,5 +1,5 @@
 [Unit]
-Description=Trigger wifi re-check
+Description=Trigger Pacman Update Scheduler
 
 [Timer]
 OnBootSec=15min

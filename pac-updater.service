@@ -4,9 +4,8 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=//usr/sbin/pac-updater
+ExecStart=/usr/bin/pacman-system-updater
 RemainAfterExit=false
-#ExecStop=/opt/foo/teardown-foo.sh
 #StandardOutput=journal
 StandardOutput=/var/log/pac-updater.log
 
